@@ -104,9 +104,11 @@ class LoginScreen extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: ((context) => const ForgetScreen())));
       },
-      child: const Text(
+      child: Text(
         'Forgert Password?',
-        style: TextStyle(color: Colors.deepPurple),
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+        ),
       ),
     );
   }
@@ -130,11 +132,11 @@ class LoginScreen extends StatelessWidget {
                 MaterialPageRoute(
                     builder: ((context) => const RegisterScreen())));
           },
-          child: const Text(
+          child: Text(
             'Register',
             style: TextStyle(
               fontSize: 16,
-              color: Colors.deepPurple,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
         ),

@@ -108,11 +108,11 @@ class ForgetScreen extends StatelessWidget {
             Navigator.push(context,
                 MaterialPageRoute(builder: ((context) => const LoginScreen())));
           },
-          child: const Text(
+          child: Text(
             'Log-in',
             style: TextStyle(
               fontSize: 16,
-              color: Colors.deepPurple,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
         ),
