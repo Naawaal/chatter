@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppInput extends StatelessWidget {
   final String hintText;
   final bool isPassword;
+
   const AppInput({
     super.key,
     required this.hintText,

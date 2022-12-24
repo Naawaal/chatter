@@ -1,4 +1,6 @@
 import 'package:chatter/features/authentication/views/screen/forget_password.dart';
+import 'package:chatter/features/chat/views/screens/chat_convo_screen.dart';
+import 'package:chatter/features/chat/views/screens/chat_list_screen.dart';
 import 'package:chatter/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,10 @@ class AppRouter {
         return _buildRoute(settings, const RegisterScreen());
       case AppRoutes.forgotPasswordScreen:
         return _buildRoute(settings, const ForgetScreen());
+      case AppRoutes.chatListScreen:
+        return _buildRoute(settings, const ChatListScreen());
+      case AppRoutes.chatConvoScreen:
+        return _buildRoute(settings, const ChatConvoScreen());
       default:
         return _buildRoute(settings, const LoginScreen());
     }

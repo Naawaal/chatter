@@ -1,5 +1,6 @@
 import 'package:chatter/features/authentication/views/screen/register.dart';
 import 'package:chatter/features/shared/widgets/app_button.dart';
+import 'package:chatter/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import '../../../shared/widgets/app_input.dart';
 import 'forget_password.dart';
@@ -22,7 +23,7 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   _inputBuilder(),
                   const SizedBox(height: 30),
-                  _loginButtonBuilder(),
+                  _loginButtonBuilder(context),
                   const SizedBox(height: 20),
                   _forgetPasswordBuilder(context),
                 ],
@@ -84,13 +85,15 @@ class LoginScreen extends StatelessWidget {
   }
 
   //----------------------------- _buttonBuilder -------------------------------------------------//
-  Widget _loginButtonBuilder() {
+  Widget _loginButtonBuilder(final BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: AppButton(
             value: 'Login',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.chatListScreen);
+            },
           ),
         ),
       ],
