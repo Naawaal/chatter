@@ -1,4 +1,5 @@
 import 'package:chatter/features/authentication/views/screen/login_screen.dart';
+import 'package:chatter/features/authentication/viewsmodels/auth_vm.dart';
 import 'package:chatter/features/shared/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import '../../../shared/widgets/app_input.dart';

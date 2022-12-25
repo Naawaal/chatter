@@ -1,7 +1,9 @@
 import 'package:chatter/features/authentication/views/screen/register.dart';
+import 'package:chatter/features/authentication/viewsmodels/auth_vm.dart';
 import 'package:chatter/features/shared/widgets/app_button.dart';
 import 'package:chatter/utils/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../shared/widgets/app_input.dart';
 import 'forget_password.dart';
 
@@ -10,31 +12,36 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            Expanded(
+    return ChangeNotifierProvider<AuthVM>(
+        create: (context) => AuthVM(),
+        builder: (context, child) {
+          final authVM = Provider.of<AuthVM>(context);
+          return Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.all(15.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _headerBuilder(),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _headerBuilder(),
+                        const SizedBox(height: 20),
+                        _inputBuilder(authVM),
+                        const SizedBox(height: 30),
+                        _loginButtonBuilder(context, authVM),
+                        const SizedBox(height: 20),
+                        _forgetPasswordBuilder(context),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 20),
-                  _inputBuilder(),
-                  const SizedBox(height: 30),
-                  _loginButtonBuilder(context),
-                  const SizedBox(height: 20),
-                  _forgetPasswordBuilder(context),
+                  _registerBuilder(context),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
-            _registerBuilder(context),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
 
 //------------------------ _HeaderBuilder -----------------------------------------------//
@@ -69,30 +76,32 @@ class LoginScreen extends StatelessWidget {
   }
 
 //-------------------------- _inputBuilder ---------------------------------------------//
-  Widget _inputBuilder() {
+  Widget _inputBuilder(final AuthVM vm) {
     return Column(
-      children: const [
+      children: [
         AppInput(
           hintText: 'Email',
+          controller: vm.emailController,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         AppInput(
           hintText: 'Password',
           isPassword: true,
+          controller: vm.passwordController,
         ),
       ],
     );
   }
 
   //----------------------------- _buttonBuilder -------------------------------------------------//
-  Widget _loginButtonBuilder(final BuildContext context) {
+  Widget _loginButtonBuilder(final BuildContext context, final AuthVM vm) {
     return Row(
       children: [
         Expanded(
           child: AppButton(
             value: 'Login',
             onPressed: () {
-              Navigator.pushNamed(context, AppRoutes.chatListScreen);
+              vm.login();
             },
           ),
         ),

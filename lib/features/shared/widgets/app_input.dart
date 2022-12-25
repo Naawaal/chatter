@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 class AppInput extends StatelessWidget {
   final String hintText;
+  final TextEditingController? controller;
   final bool isPassword;
 
   const AppInput({
     super.key,
     required this.hintText,
     this.isPassword = false,
+    this.controller,
   });
 
   @override
@@ -19,6 +21,7 @@ class AppInput extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: TextFormField(
+        controller: controller,
         style: const TextStyle(
           fontSize: 14,
         ),
