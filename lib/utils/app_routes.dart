@@ -4,4 +4,5 @@ class AppRoutes {
   static const String registerScreen = 'register_screen';
   static const String forgotPasswordScreen = 'forgot_password_screen';
   static const String chatListScreen = 'chat_list_screen';
+  static const String warapper = 'wrapper';
 }

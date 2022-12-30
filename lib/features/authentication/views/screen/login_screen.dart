@@ -1,7 +1,6 @@
 import 'package:chatter/features/authentication/views/screen/register.dart';
 import 'package:chatter/features/authentication/viewsmodels/auth_vm.dart';
 import 'package:chatter/features/shared/widgets/app_button.dart';
-import 'package:chatter/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../shared/widgets/app_input.dart';
@@ -13,31 +12,36 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AuthVM>(
-        create: (context) => AuthVM(),
+        create: (context) => AuthVM(context: context),
         builder: (context, child) {
           final authVM = Provider.of<AuthVM>(context);
           return Scaffold(
             body: Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _headerBuilder(),
-                        const SizedBox(height: 20),
-                        _inputBuilder(authVM),
-                        const SizedBox(height: 30),
-                        _loginButtonBuilder(context, authVM),
-                        const SizedBox(height: 20),
-                        _forgetPasswordBuilder(context),
-                      ],
-                    ),
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _headerBuilder(),
+                            const SizedBox(height: 20),
+                            _inputBuilder(authVM),
+                            const SizedBox(height: 30),
+                            _loginButtonBuilder(context, authVM),
+                            const SizedBox(height: 20),
+                            _forgetPasswordBuilder(context),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      _registerBuilder(context),
+                    ],
                   ),
-                  const SizedBox(height: 20),
-                  _registerBuilder(context),
-                ],
+                ),
               ),
             ),
           );
@@ -155,5 +159,4 @@ class LoginScreen extends StatelessWidget {
       ],
     );
   }
-  //--------------------------------------------------------------------------------//
 }

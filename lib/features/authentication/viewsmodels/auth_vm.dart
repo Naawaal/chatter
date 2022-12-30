@@ -1,20 +1,31 @@
+import 'package:chatter/features/authentication/services/auth_services.dart';
 import 'package:flutter/cupertino.dart';
 
 class AuthVM extends ChangeNotifier {
+  final BuildContext context;
+  AuthVM({
+    required this.context,
+  });
+
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
+  TextEditingController get nameController => _nameController;
 
-  void login() {
-    if (_emailController.text.trim() != '' &&
-        _passwordController.text.trim() != '') {
-      print('Login');
-    } else {
-      print('Please enter email and password');
-    }
+  void login() async {
+    await AuthServices.loginUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
   }
 
-  void registerUser() {}
+  void registerUser() async {
+    await AuthServices.registerUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+  }
 }
